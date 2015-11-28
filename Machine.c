@@ -267,7 +267,6 @@ int ObjCode()
                         }
                         else
                         {
-
                             for(i = 1; i < strlen(opd); i++)
                                 opd[i-1] = opd[i];
                             opd[i-1] = '\0';

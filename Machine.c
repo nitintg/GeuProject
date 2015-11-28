@@ -9,6 +9,7 @@
 #define i_c 10
 #define h_c 10
 #define l_c 1
+
 enum
 {
     KEY_ESC=27,
@@ -17,6 +18,7 @@ enum
     ARROW_LEFT=256+75,
     ARROW_RIGHT=256+77
 };
+
 static int get_code(void)
 {
     int h=getch();
@@ -24,12 +26,14 @@ static int get_code(void)
         h=256+getch();
     return h;
 }
+
 void SetColorAndBackground(int ForgC, int BackC)  /*function for setting color for text and background*/
 {
     WORD wColor =((BackC)<<5) + (ForgC);;
     SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),wColor);
     return;
 }
+
 int about() /*function about project*/
 {
     system("cls");
@@ -42,7 +46,7 @@ int about() /*function about project*/
     return 1;
 }
 
-unsigned long Dec(char pc[10])
+unsigned long Dec(char pc[10]) //Hexadecimal to Decimal
 {
     int len = 0, i;
     const int base = 16;
@@ -578,7 +582,6 @@ int ObjCode()
     return 0;
 }
 
-
 int Addressing()
 {
     FILE *fp1, *fp2, *fp3, *fp4;
@@ -664,7 +667,6 @@ int Addressing()
             num = Dec(pc);
             num = num + 3;
             sprintf(pc,"%X",num);
-
         }
         else if(!strcmp(opc,"RESW"))
         {
@@ -680,14 +682,12 @@ int Addressing()
                 num = Dec(pc);
                 num = num + 1;
                 sprintf(pc,"%X",num);
-
             }
             else
             {
                 num = Dec(pc);
                 num = num + (strlen(opd) - 3);
                 sprintf(pc,"%X",num);
-
             }
         }
         else if(!strcmp(opc,"RESB"))
@@ -695,7 +695,6 @@ int Addressing()
             num = Dec(pc);
             num = num + atoi(opd);
             sprintf(pc,"%X",num);
-
         }
         fscanf(fp1,"%s %s %s",lb,opc,opd);
     }
@@ -706,7 +705,6 @@ int Addressing()
     {
         num = Dec(pc);
         sprintf(pc,"%X",(num - Dec(Ad)));
-
         printf("\nProgram Size= %s\n",pc);
         fp1 = fopen("Size.txt","w");
         fprintf(fp1,"%s",pc);
